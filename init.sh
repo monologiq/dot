@@ -253,6 +253,7 @@ setup_symlinks() {
     create_symlink "ghostty" "$XDG_CONFIG_HOME/ghostty"
     create_symlink "homebrew" "$XDG_CONFIG_HOME/homebrew"
     create_symlink "zsh" "$ZDOTDIR"
+    create_symlink "ssh" "$HOME/.ssh"
 }
 
 main() {
