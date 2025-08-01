@@ -20,3 +20,6 @@ PATH+=":$GOPATH/bin"
 export N_PREFIX="$XDG_CACHE_HOME/n"
 PATH+=":$N_PREFIX/bin"
 
+if [ -r "$ZDOTDIR/.zlocal" ]; then
+	source "$ZDOTDIR/.zlocal"
+fi
