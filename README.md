@@ -1,10 +1,11 @@
 # Dotfiles
 
-Personal dotfiles configuration managed with GNU Stow.
+Personal dotfiles configuration managed with GNU Stow and age.
 
 # Machines
 - odinoko: MacBook Pro M1 2020
 
  ```sh
- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/monologiq/dot/refs/heads/master/init.sh)" -- --key "$DOT_KEY_PATH"
+ key=1234
+ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/monologiq/dot/refs/heads/master/init.sh)" -- --key "$key"
  ```
