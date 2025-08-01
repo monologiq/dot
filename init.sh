@@ -219,13 +219,30 @@ load_ssh_keys() {
 
     for key in "$HOME/.ssh"/id_* "$HOME/.ssh"/*_rsa "$HOME/.ssh"/*_ed25519 "$HOME/.ssh"/*_ecdsa; do
         if [[ -f "$key" && ! "$key" == *.pub ]]; then
+            echo "Found SSH key: $(basename "$key")"
+
             if is_macos; then
-                ssh-add --apple-use-keychain "$key" 2>/dev/null
+                read -p "Add $(basename "$key") to keychain? (y/N): " -n 1 -r
+                echo
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    ssh-add --apple-use-keychain "$key" 2>/dev/null || abort "Failed to add $(basename "$key") to keychain"
+                else
+                    ssh-add "$key" 2>/dev/null || abort "Failed to add $(basename "$key")"
+                fi
             else
-                ssh-add -A "$key" 2>/dev/null
+                read -p "Add $(basename "$key")? (y/N): " -n 1 -r
+                echo
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    ssh-add "$key" 2>/dev/null || abort "Failed to add $(basename "$key")"
+                fi
             fi
         fi
     done
+
+    if ! ssh-add -l >/dev/null 2>&1; then
+        echo "No keys loaded, attempting to load default keys..."
+        ssh-add 2>/dev/null || abort "No default keys found"
+    fi
 }
 
 setup_symlinks() {
