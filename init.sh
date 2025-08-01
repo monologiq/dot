@@ -112,9 +112,9 @@ setup_xdg_directories() {
 
     export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
     export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
-    export BINPATH="${BINPATH:-$HOME/.local/bin}"
+    export DOT_BINPATH="${DOT_BINPATH:-$HOME/.local/bin}"
 
-    mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_CACHE_HOME" "$XDG_STATE_HOME" "$ZDOTDIR" "$BINPATH"
+    mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_CACHE_HOME" "$XDG_STATE_HOME" "$ZDOTDIR" "$DOT_BINPATH"
 }
 
 create_symlink() {
@@ -230,7 +230,8 @@ load_ssh_keys() {
 
 setup_symlinks() {
     echo "Setting up symlinks..."
-    create_symlink "bin" "$BINPATH"
+    create_symlink "bin" "$DOT_BINPATH"
+    create_symlink "lib" "$DOT_BINPATH/lib"
     create_symlink "git" "$XDG_CONFIG_HOME/git"
     create_symlink "ghostty" "$XDG_CONFIG_HOME/ghostty"
     create_symlink "homebrew" "$XDG_CONFIG_HOME/homebrew"

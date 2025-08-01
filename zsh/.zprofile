@@ -11,15 +11,15 @@ fi
 
 # DEVELOPMENT
 
-export BINPATH="$HOME/.local/bin"
-PATH+=":$BINPATH"
+export DOT_BINPATH="$HOME/.local/bin"
+export PATH="${PATH}:${DOT_BINPATH}"
 
 export GOPATH="$XDG_CACHE_HOME/go"
-PATH+=":$GOPATH/bin"
+PATH+=":${GOPATH}/bin"
 
 export N_PREFIX="$XDG_CACHE_HOME/n"
-PATH+=":$N_PREFIX/bin"
+PATH+=":${N_PREFIX}/bin"
 
 if [ -r "$ZDOTDIR/.zlocal" ]; then
-	source "$ZDOTDIR/.zlocal"
+	source "${ZDOTDIR}/.zlocal"
 fi
