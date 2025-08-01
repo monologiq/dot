@@ -102,7 +102,7 @@ EOF
 }
 
 setup_xdg_directories() {
-    if ! is_macos; then
+    if is_macos; then
         export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/Library/Caches}"
     else
         export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
